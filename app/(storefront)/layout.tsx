@@ -12,9 +12,9 @@ export default function StorefrontLayout({
     <ThemeProvider>
       <div style={{ backgroundColor: "var(--color-void)" }}>
         <AnnouncementBar />
-        <div style={{ paddingTop: "40px" }}>
+        <div>
           <Nav />
-          <main style={{ paddingTop: "64px" }}>{children}</main>
+          <main style={{ paddingTop: "104px" }}>{children}</main>
           <Footer />
         </div>
       </div>

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useCart } from "@/hooks/useCart";
+import { useTheme } from "@/contexts/ThemeContext";
 import CartDrawer from "./CartDrawer";
 import ThemeToggle from "./ThemeToggle";
 
@@ -17,6 +18,7 @@ const NAV_LINKS = [
 export default function Nav() {
   const pathname = usePathname();
   const { count } = useCart();
+  const { theme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -30,8 +32,9 @@ export default function Nav() {
   return (
     <>
       <header
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+        className="fixed left-0 right-0 z-50 transition-all duration-300"
         style={{
+          top: 40,
           backgroundColor: scrolled
             ? "var(--color-forest)"
             : "transparent",
@@ -46,7 +49,7 @@ export default function Nav() {
             {/* Logo */}
             <Link href="/home" className="flex items-center">
               <Image
-                src="/logo.png"
+                src={theme === "light" ? "/logo-light.png" : "/logo.png"}
                 alt="Auréx Atelier"
                 height={36}
                 width={140}

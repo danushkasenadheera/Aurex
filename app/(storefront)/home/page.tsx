@@ -35,6 +35,8 @@ async function getNewArrivals() {
   return data ?? [];
 }
 
+type FeaturedProduct = { id: string; name: string; price: number };
+
 export default async function HomePage() {
   const [featured, newArrivals, homeContent] = await Promise.all([
     getFeaturedProducts(),
@@ -43,99 +45,109 @@ export default async function HomePage() {
   ]);
 
   const { hero, featureStrip, collectionCards } = homeContent;
+  const firstFeatured = featured[0] as unknown as FeaturedProduct | undefined;
 
   return (
     <>
       {/* Hero */}
       {hero.visible && (
         <section
-          className="relative min-h-[90vh] flex items-center overflow-hidden"
-          style={{ backgroundColor: "var(--color-void)" }}
+          className="relative overflow-hidden"
+          style={{ backgroundColor: "var(--color-void)", padding: "120px 64px 100px" }}
         >
-          {/* Background gradient */}
+          {/* Gradient overlays matching template */}
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                "radial-gradient(ellipse 70% 60% at 70% 50%, rgba(16,38,32,0.8) 0%, transparent 70%)",
+                "radial-gradient(ellipse 1100px 540px at 50% 0%, rgba(212,162,76,0.20) 0%, rgba(0,0,0,0) 65%)",
             }}
           />
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                "radial-gradient(ellipse 40% 40% at 20% 80%, rgba(110,79,24,0.15) 0%, transparent 60%)",
+                "radial-gradient(ellipse at 50% 110%, #102620 0%, rgba(0,0,0,0) 55%)",
             }}
           />
 
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
-            <div className={`flex items-center gap-16 ${hero.imageUrl ? "justify-between" : ""}`}>
-              <div className="max-w-xl">
-                {/* Eyebrow */}
+          <div className="relative" style={{ maxWidth: 1440, margin: "0 auto" }}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: hero.imageUrl ? "1.1fr 1fr" : "1fr",
+                gap: 80,
+                alignItems: "center",
+              }}
+            >
+              {/* Left: text content */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
                 {hero.eyebrow && (
                   <p
-                    className="text-xs tracking-[0.22em] uppercase mb-6"
-                    style={{ color: "var(--color-gold-200)", fontFamily: "var(--font-body)" }}
+                    style={{
+                      fontSize: 12, letterSpacing: "0.22em", textTransform: "uppercase",
+                      color: "var(--color-gold-200)", fontWeight: 500, margin: 0,
+                      fontFamily: "var(--font-body)",
+                    }}
                   >
                     {hero.eyebrow}
                   </p>
                 )}
 
-                {/* Headline */}
                 <h1
-                  className="text-5xl sm:text-6xl lg:text-7xl leading-[1.05] mb-6"
                   style={{
                     fontFamily: "var(--font-display)",
-                    fontWeight: 300,
-                    color: "var(--color-fg)",
-                    letterSpacing: "-0.02em",
+                    fontSize: 96, lineHeight: 0.95, fontWeight: 300,
+                    letterSpacing: "-0.015em", color: "var(--color-fg)", margin: 0,
                   }}
                 >
-                  {hero.headline}{" "}
+                  {hero.headline}
                   {hero.headlineAccent && (
-                    <em
-                      className="not-italic"
-                      style={{ color: "var(--color-gold-400)" }}
-                    >
-                      {hero.headlineAccent}
-                    </em>
+                    <>
+                      <br />
+                      <em style={{ fontStyle: "italic", color: "var(--color-gold-100)", fontWeight: 300 }}>
+                        {hero.headlineAccent}
+                      </em>
+                    </>
                   )}
                 </h1>
 
                 {hero.subtext && (
                   <p
-                    className="text-base sm:text-lg leading-relaxed mb-10 max-w-sm"
-                    style={{ color: "var(--color-fg-muted)", fontFamily: "var(--font-body)", fontWeight: 400 }}
+                    style={{
+                      fontSize: 19, lineHeight: 1.56, color: "var(--color-fg-muted)",
+                      maxWidth: 520, margin: 0, fontWeight: 450,
+                      fontFamily: "var(--font-body)",
+                    }}
                   >
                     {hero.subtext}
                   </p>
                 )}
 
-                <div className="flex flex-wrap gap-4">
+                <div style={{ display: "flex", gap: 14, marginTop: 8, flexWrap: "wrap" }}>
                   {hero.primaryCta.label && (
                     <Link
                       href={hero.primaryCta.href}
-                      className="inline-flex items-center gap-2 px-8 py-3.5 rounded text-sm font-medium tracking-wide transition-all"
                       style={{
-                        backgroundColor: "var(--color-gold-400)",
-                        color: "var(--color-void)",
-                        fontFamily: "var(--font-body)",
+                        display: "inline-flex", alignItems: "center", justifyContent: "center",
+                        gap: 10, fontFamily: "var(--font-body)", fontSize: 15, fontWeight: 500,
+                        padding: "14px 28px", borderRadius: 9999, cursor: "pointer",
+                        border: "1px solid transparent", letterSpacing: "0.02em",
+                        backgroundColor: "#fff", color: "#000", textDecoration: "none",
                       }}
                     >
                       {hero.primaryCta.label}
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                      </svg>
                     </Link>
                   )}
                   {hero.secondaryCta.label && (
                     <Link
                       href={hero.secondaryCta.href}
-                      className="inline-flex items-center gap-2 px-8 py-3.5 rounded text-sm font-medium tracking-wide border transition-colors"
                       style={{
-                        borderColor: "var(--color-card-border)",
-                        color: "var(--color-fg-muted)",
-                        fontFamily: "var(--font-body)",
+                        display: "inline-flex", alignItems: "center", justifyContent: "center",
+                        gap: 10, fontFamily: "var(--font-body)", fontSize: 15, fontWeight: 500,
+                        padding: "14px 28px", borderRadius: 9999, cursor: "pointer",
+                        border: "1px solid rgba(255,255,255,0.7)", letterSpacing: "0.02em",
+                        backgroundColor: "transparent", color: "#fff", textDecoration: "none",
                       }}
                     >
                       {hero.secondaryCta.label}
@@ -143,70 +155,101 @@ export default async function HomePage() {
                   )}
                 </div>
 
-                {/* Stats */}
-                {hero.stats.length > 0 && (
-                  <div className="flex gap-8 mt-14">
-                    {hero.stats.map(({ value, unit, label }) => (
-                      <div key={label}>
-                        <div className="flex items-baseline gap-1">
-                          <span
-                            className="text-2xl"
-                            style={{ fontFamily: "var(--font-mono)", color: "var(--color-gold-400)" }}
-                          >
-                            {value}
-                          </span>
-                          <span
-                            className="text-xs"
-                            style={{ color: "var(--color-gold-700)", fontFamily: "var(--font-mono)" }}
-                          >
-                            {unit}
-                          </span>
-                        </div>
-                        <p
-                          className="text-xs mt-0.5"
-                          style={{ color: "var(--color-fg-tertiary)", fontFamily: "var(--font-body)" }}
-                        >
-                          {label}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                {/* Divider + origin line */}
+                <div style={{ marginTop: 48, display: "flex", alignItems: "center", gap: 32 }}>
+                  <div style={{
+                    height: 1, width: 120,
+                    background: "linear-gradient(90deg, rgba(212,162,76,0) 0%, #D4A24C 50%, rgba(212,162,76,0) 100%)",
+                  }} />
+                  <span style={{
+                    fontSize: 12, letterSpacing: "0.22em", textTransform: "uppercase",
+                    color: "var(--color-fg-tertiary)", fontFamily: "var(--font-body)",
+                  }}>
+                    Cut &amp; sewn in Colombo
+                  </span>
+                </div>
               </div>
 
-              {/* Hero image */}
+              {/* Right: hero image + overlay card */}
               {hero.imageUrl && (
-                <div className="hidden lg:block shrink-0">
+                <div style={{ position: "relative", aspectRatio: "4/5", maxHeight: 720 }}>
                   <Image
                     src={hero.imageUrl}
-                    alt="Hero"
-                    width={480}
-                    height={560}
-                    className="object-cover rounded-sm"
-                    style={{ maxHeight: "560px", width: "auto" }}
+                    alt=""
+                    fill
+                    priority
+                    style={{
+                      objectFit: "cover",
+                      filter: "grayscale(0.2) contrast(1.05) brightness(0.95)",
+                    }}
                   />
+
+                  {/* Featured product card */}
+                  {firstFeatured && (
+                    <div
+                      style={{
+                        position: "absolute", bottom: -40, left: -40,
+                        width: 220, height: 280,
+                        border: "1px solid rgba(212,162,76,0.4)",
+                        background: "rgba(2,9,10,0.6)",
+                        backdropFilter: "blur(8px)",
+                        WebkitBackdropFilter: "blur(8px)",
+                        padding: 24,
+                        display: "flex", flexDirection: "column", justifyContent: "space-between",
+                      }}
+                    >
+                      <div>
+                        <p style={{
+                          fontSize: 12, letterSpacing: "0.22em", textTransform: "uppercase",
+                          color: "var(--color-gold-200)", fontWeight: 500, margin: 0,
+                        }}>
+                          Featured
+                        </p>
+                        <div style={{
+                          fontFamily: "var(--font-display)", fontSize: 24,
+                          fontWeight: 400, color: "#fff", marginTop: 12, lineHeight: 1.2,
+                        }}>
+                          {firstFeatured.name}
+                        </div>
+                      </div>
+                      <div>
+                        <div style={{
+                          color: "var(--color-gold-200)", fontSize: 14,
+                          fontFamily: "var(--font-mono)",
+                        }}>
+                          LKR {firstFeatured.price.toLocaleString("en-LK")}
+                        </div>
+                        <Link
+                          href={`/product/${firstFeatured.id}`}
+                          style={{
+                            display: "inline-flex", alignItems: "center", gap: 8,
+                            color: "#fff", textDecoration: "none", fontSize: 13,
+                            letterSpacing: "0.08em", textTransform: "uppercase",
+                            marginTop: 12, fontWeight: 500,
+                          }}
+                        >
+                          View{" "}
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M5 12h14M13 5l7 7-7 7" />
+                          </svg>
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Decorative asterisk */}
+                  <svg
+                    width={56} height={56} viewBox="0 0 24 24"
+                    fill="none" stroke="var(--color-gold-400)" strokeWidth={1}
+                    strokeLinecap="round"
+                    style={{ position: "absolute", top: 16, right: 16, opacity: 0.85 }}
+                  >
+                    <path d="M12 4v16M4.5 7.5l15 9M19.5 7.5l-15 9" />
+                  </svg>
                 </div>
               )}
             </div>
           </div>
-
-          {/* Decorative vertical text */}
-          {!hero.imageUrl && (
-            <div
-              className="absolute right-8 top-1/2 -translate-y-1/2 hidden lg:block"
-              style={{
-                writingMode: "vertical-rl",
-                textOrientation: "mixed",
-                color: "var(--color-fg-disabled)",
-                fontSize: "11px",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                fontFamily: "var(--font-body)",
-              }}
-            >
-              Auréx Atelier · SS 2025
-            </div>
-          )}
         </section>
       )}
 

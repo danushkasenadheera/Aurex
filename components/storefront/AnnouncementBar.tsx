@@ -3,6 +3,11 @@ export default function AnnouncementBar() {
     <div
       className="w-full text-center py-2.5 px-4 text-xs tracking-[0.18em] uppercase"
       style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 51,
         backgroundColor: "var(--color-deep-teal)",
         color: "var(--color-gold-200)",
         fontFamily: "var(--font-body)",
