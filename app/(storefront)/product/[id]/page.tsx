@@ -17,6 +17,7 @@ async function getProduct(id: string) {
       `*, product_types(id, name), product_variants(id, color, hex, images, inventory(variant_id, size, qty))`,
     )
     .eq("id", id)
+    .eq("listed", true)
     .single();
   return data ? (data as unknown as ProductWithVariantsAndInventory) : null;
 }

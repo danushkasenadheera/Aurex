@@ -26,7 +26,8 @@ async function getProducts(type?: string, tag?: string, sort?: string) {
   const supabase = await createClient();
   let query = supabase
     .from("products")
-    .select(`*, product_types(id, name), product_variants(id, color, hex, images, inventory(variant_id, size, qty))`);
+    .select(`*, product_types(id, name), product_variants(id, color, hex, images, inventory(variant_id, size, qty))`)
+    .eq("listed", true);
 
   if (type) {
     // Resolve type name → id, then filter

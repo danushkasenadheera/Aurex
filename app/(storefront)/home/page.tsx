@@ -18,6 +18,7 @@ async function getFeaturedProducts() {
     .select(
       `*, product_variants(id, color, hex, images, inventory(variant_id, size, qty))`,
     )
+    .eq("listed", true)
     .contains("tags", ["Featured"])
     .limit(4);
   return data ?? [];
@@ -30,6 +31,7 @@ async function getNewArrivals() {
     .select(
       `*, product_variants(id, color, hex, images, inventory(variant_id, size, qty))`,
     )
+    .eq("listed", true)
     .contains("tags", ["New Arrival"])
     .limit(8);
   return data ?? [];
