@@ -82,7 +82,7 @@ export default function ReturnsPage() {
               {[
                 {
                   step: "1",
-                  text: "Email us at returns@aurex.lk with your order number (e.g. AX-123456), the item(s) you wish to return, and the reason.",
+                  text: "Email us at returns@wearaurex.com with your order number (e.g. AX-123456), the item(s) you wish to return, and the reason.",
                 },
                 {
                   step: "2",
@@ -196,10 +196,10 @@ export default function ReturnsPage() {
             <p className="text-sm leading-relaxed" style={{ color: "var(--color-fg-muted)" }}>
               Reach us at{" "}
               <a
-                href="mailto:returns@aurex.lk"
+                href="mailto:returns@wearaurex.com"
                 style={{ color: "var(--color-gold-400)", textDecoration: "underline", textUnderlineOffset: 3 }}
               >
-                returns@aurex.lk
+                returns@wearaurex.com
               </a>{" "}
               or through your{" "}
               <Link

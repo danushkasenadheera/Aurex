@@ -24,7 +24,7 @@ const sections = [
   },
   {
     heading: "5. Data Retention",
-    body: `We retain your personal data for as long as your account is active or as required to fulfil orders and comply with legal obligations. You may request deletion of your account and associated data by contacting us at hello@aurex.lk.`,
+    body: `We retain your personal data for as long as your account is active or as required to fulfil orders and comply with legal obligations. You may request deletion of your account and associated data by contacting us at hello@wearaurex.com.`,
   },
   {
     heading: "6. Security",
@@ -32,7 +32,7 @@ const sections = [
   },
   {
     heading: "7. Your Rights",
-    body: `You have the right to access, correct, or delete your personal data held by us. To exercise these rights, contact us at hello@aurex.lk. We will respond within 14 business days.`,
+    body: `You have the right to access, correct, or delete your personal data held by us. To exercise these rights, contact us at hello@wearaurex.com. We will respond within 14 business days.`,
   },
   {
     heading: "8. Changes to This Policy",
@@ -40,7 +40,7 @@ const sections = [
   },
   {
     heading: "9. Contact",
-    body: `For any privacy-related queries, contact us at hello@aurex.lk or write to: Auréx (Pvt) Ltd, Colombo, Sri Lanka.`,
+    body: `For any privacy-related queries, contact us at hello@wearaurex.com or write to: Auréx (Pvt) Ltd, Colombo, Sri Lanka.`,
   },
 ];
 

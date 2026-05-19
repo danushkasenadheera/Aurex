@@ -133,10 +133,10 @@ export default async function DeliveryPolicyPage() {
             <p className="text-sm" style={{ color: "var(--color-fg-muted)" }}>
               Contact us at{" "}
               <a
-                href="mailto:hello@aurex.lk"
+                href="mailto:hello@wearaurex.com"
                 style={{ color: "var(--color-gold-400)", textDecoration: "underline", textUnderlineOffset: 3 }}
               >
-                hello@aurex.lk
+                hello@wearaurex.com
               </a>{" "}
               or use our{" "}
               <a

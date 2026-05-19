@@ -49,10 +49,10 @@ export default function ContactPage() {
                   <div>
                     <p className="font-medium mb-1" style={{ color: "var(--color-fg)" }}>Email</p>
                     <a
-                      href="mailto:hello@aurex.lk"
+                      href="mailto:hello@wearaurex.com"
                       style={{ color: "var(--color-gold-400)", textDecoration: "underline", textUnderlineOffset: 3 }}
                     >
-                      hello@aurex.lk
+                      hello@wearaurex.com
                     </a>
                   </div>
                   <div>
@@ -62,10 +62,10 @@ export default function ContactPage() {
                   <div>
                     <p className="font-medium mb-1" style={{ color: "var(--color-fg)" }}>Returns & Exchanges</p>
                     <a
-                      href="mailto:returns@aurex.lk"
+                      href="mailto:returns@wearaurex.com"
                       style={{ color: "var(--color-gold-400)", textDecoration: "underline", textUnderlineOffset: 3 }}
                     >
-                      returns@aurex.lk
+                      returns@wearaurex.com
                     </a>
                   </div>
                 </div>
@@ -105,7 +105,7 @@ export default function ContactPage() {
               >
                 Send a Message
               </p>
-              <form className="space-y-4" action="mailto:hello@aurex.lk" method="post" encType="text/plain">
+              <form className="space-y-4" action="mailto:hello@wearaurex.com" method="post" encType="text/plain">
                 <div>
                   <label
                     className="block text-xs uppercase tracking-[0.12em] mb-1.5"

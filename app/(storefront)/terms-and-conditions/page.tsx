@@ -40,7 +40,7 @@ const sections = [
   },
   {
     heading: "9. Contact",
-    body: `For any queries regarding these terms, please contact us at hello@aurex.lk.`,
+    body: `For any queries regarding these terms, please contact us at hello@wearaurex.com.`,
   },
 ];
 
