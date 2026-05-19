@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import type { ProductType } from "@/types/database.types";
 import ImageUpload from "@/components/admin/ImageUpload";
+
+const RichTextEditor = dynamic(() => import("@/components/admin/RichTextEditor"), { ssr: false });
 
 const SIZES = ["S", "M", "L", "XL", "XXL"] as const;
 const AVAILABLE_TAGS = ["Featured", "New Arrival"] as const;
@@ -396,14 +399,7 @@ export default function ProductForm({ mode, productTypes, initialData }: Props) 
         <div className="grid grid-cols-2 gap-5">
           <div className="col-span-2">
             <label className={labelCls} style={labelStyle}>Description</label>
-            <textarea
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              rows={3}
-              placeholder="Describe the product…"
-              className={inputCls}
-              style={{ ...inputStyle, resize: "vertical" }}
-            />
+            <RichTextEditor value={description} onChange={setDescription} />
           </div>
           <div>
             <label className={labelCls} style={labelStyle}>Fabric</label>

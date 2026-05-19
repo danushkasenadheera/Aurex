@@ -163,15 +163,11 @@ export default async function ProductPage({ params }: Props) {
               )}
             </div>
 
-            <p
-              className="text-sm leading-relaxed mb-8"
-              style={{
-                color: "var(--color-fg-muted)",
-                fontFamily: "var(--font-body)",
-              }}
-            >
-              {product.description}
-            </p>
+            <div
+              className="product-description text-sm leading-relaxed mb-8"
+              style={{ color: "var(--color-fg-muted)", fontFamily: "var(--font-body)" }}
+              dangerouslySetInnerHTML={{ __html: product.description }}
+            />
 
             {/* Interactive selector + add to cart */}
             <AddToCartButton

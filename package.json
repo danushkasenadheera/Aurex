@@ -20,6 +20,8 @@
     "@aws-sdk/client-s3": "^3.1048.0",
     "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.49.4",
+    "@tiptap/react": "^2.27.2",
+    "@tiptap/starter-kit": "^2.27.2",
     "next": "^15.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
