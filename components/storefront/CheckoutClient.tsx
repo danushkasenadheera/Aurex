@@ -468,7 +468,7 @@ export default function CheckoutClient({
             className="text-xs tracking-[0.2em] uppercase mb-3"
             style={{ color: "var(--color-gold-200)" }}
           >
-            Auréx Atelier
+            Auréx
           </p>
           <h1
             className="text-4xl"

@@ -20,6 +20,18 @@ interface FormState {
   zoneOtherFee: string;
   zoneOtherDays: string;
   freeShippingThreshold: string;
+  socialFacebook: string;
+  socialInstagram: string;
+  socialTiktok: string;
+  whatsappNumber: string;
+  whatsappPrefill: string;
+  businessOpenDay: string;
+  businessCloseDay: string;
+  businessOpenTime: string;
+  businessCloseTime: string;
+  holidayNote: string;
+  brandTagline: string;
+  copyrightSuffix: string;
 }
 
 function toForm(s: AppSettings): FormState {
@@ -35,6 +47,18 @@ function toForm(s: AppSettings): FormState {
     zoneOtherFee: String(s.shipping.zones["Other Districts"].fee),
     zoneOtherDays: s.shipping.zones["Other Districts"].days,
     freeShippingThreshold: String(s.shipping.freeThreshold),
+    socialFacebook: s.footer.socialFacebook,
+    socialInstagram: s.footer.socialInstagram,
+    socialTiktok: s.footer.socialTiktok,
+    whatsappNumber: s.footer.whatsappNumber,
+    whatsappPrefill: s.footer.whatsappPrefill,
+    businessOpenDay: s.footer.businessOpenDay,
+    businessCloseDay: s.footer.businessCloseDay,
+    businessOpenTime: s.footer.businessOpenTime,
+    businessCloseTime: s.footer.businessCloseTime,
+    holidayNote: s.footer.holidayNote,
+    brandTagline: s.footer.brandTagline,
+    copyrightSuffix: s.footer.copyrightSuffix,
   };
 }
 
@@ -87,6 +111,18 @@ export default function SettingsForm({ initialSettings }: Props) {
         zone_other_fee: Number(form.zoneOtherFee),
         zone_other_days: form.zoneOtherDays.trim(),
         free_shipping_threshold: Number(form.freeShippingThreshold),
+        social_facebook_url: form.socialFacebook.trim(),
+        social_instagram_url: form.socialInstagram.trim(),
+        social_tiktok_url: form.socialTiktok.trim(),
+        whatsapp_number: form.whatsappNumber.trim(),
+        whatsapp_prefill_message: form.whatsappPrefill.trim(),
+        business_hours_open_day: form.businessOpenDay.trim(),
+        business_hours_close_day: form.businessCloseDay.trim(),
+        business_hours_open_time: form.businessOpenTime.trim(),
+        business_hours_close_time: form.businessCloseTime.trim(),
+        footer_holiday_note: form.holidayNote.trim(),
+        footer_brand_tagline: form.brandTagline.trim(),
+        footer_copyright_suffix: form.copyrightSuffix.trim(),
         updated_at: new Date().toISOString(),
       })
       .eq("id", 1);
@@ -223,6 +259,134 @@ export default function SettingsForm({ initialSettings }: Props) {
                 style={inputStyle}
               />
             </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* ── Social Media ──────────────────────────────────────────────────── */}
+      <Section label="Social Media">
+        <div className="space-y-3">
+          {(
+            [
+              { label: "Facebook URL", key: "socialFacebook", placeholder: "https://facebook.com/aurex" },
+              { label: "Instagram URL", key: "socialInstagram", placeholder: "https://instagram.com/aurex" },
+              { label: "TikTok URL", key: "socialTiktok", placeholder: "https://tiktok.com/@aurex" },
+            ] as const
+          ).map(({ label, key, placeholder }) => (
+            <div key={key}>
+              <label style={labelStyle}>{label}</label>
+              <input
+                type="url"
+                placeholder={placeholder}
+                value={form[key]}
+                onChange={(e) => set(key, e.target.value)}
+                style={inputStyle}
+              />
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* ── WhatsApp & Business Hours ─────────────────────────────────────── */}
+      <Section label="WhatsApp & Business Hours">
+        <div className="space-y-3">
+          <div>
+            <label style={labelStyle}>WhatsApp Number (international format, digits only)</label>
+            <input
+              type="text"
+              placeholder="94771234567"
+              value={form.whatsappNumber}
+              onChange={(e) => set("whatsappNumber", e.target.value)}
+              style={{ ...inputStyle, fontFamily: "var(--font-mono)" }}
+            />
+          </div>
+          <div>
+            <label style={labelStyle}>WhatsApp Pre-fill Message</label>
+            <input
+              type="text"
+              value={form.whatsappPrefill}
+              onChange={(e) => set("whatsappPrefill", e.target.value)}
+              style={inputStyle}
+            />
+          </div>
+          <div className="grid grid-cols-2 gap-3 pt-2">
+            <div>
+              <label style={labelStyle}>Opens (day)</label>
+              <select
+                value={form.businessOpenDay}
+                onChange={(e) => set("businessOpenDay", e.target.value)}
+                style={{ ...inputStyle }}
+              >
+                {["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map((d) => (
+                  <option key={d} value={d}>{d}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label style={labelStyle}>Closes (day)</label>
+              <select
+                value={form.businessCloseDay}
+                onChange={(e) => set("businessCloseDay", e.target.value)}
+                style={{ ...inputStyle }}
+              >
+                {["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map((d) => (
+                  <option key={d} value={d}>{d}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label style={labelStyle}>Open Time (24h)</label>
+              <input
+                type="time"
+                value={form.businessOpenTime}
+                onChange={(e) => set("businessOpenTime", e.target.value)}
+                style={{ ...inputStyle, fontFamily: "var(--font-mono)" }}
+              />
+            </div>
+            <div>
+              <label style={labelStyle}>Close Time (24h)</label>
+              <input
+                type="time"
+                value={form.businessCloseTime}
+                onChange={(e) => set("businessCloseTime", e.target.value)}
+                style={{ ...inputStyle, fontFamily: "var(--font-mono)" }}
+              />
+            </div>
+          </div>
+          <div>
+            <label style={labelStyle}>Holiday Note</label>
+            <input
+              type="text"
+              value={form.holidayNote}
+              onChange={(e) => set("holidayNote", e.target.value)}
+              style={inputStyle}
+            />
+          </div>
+        </div>
+      </Section>
+
+      {/* ── Footer Brand ──────────────────────────────────────────────────── */}
+      <Section label="Footer Brand">
+        <div className="space-y-3">
+          <div>
+            <label style={labelStyle}>Brand Tagline</label>
+            <input
+              type="text"
+              placeholder="Dressed for Every Chapter"
+              value={form.brandTagline}
+              onChange={(e) => set("brandTagline", e.target.value)}
+              style={inputStyle}
+            />
+          </div>
+          <div>
+            <label style={labelStyle}>Copyright Suffix</label>
+            <input
+              type="text"
+              placeholder="Auréx. All rights reserved."
+              value={form.copyrightSuffix}
+              onChange={(e) => set("copyrightSuffix", e.target.value)}
+              style={inputStyle}
+            />
           </div>
         </div>
       </Section>

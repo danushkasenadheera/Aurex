@@ -131,7 +131,7 @@ export default function AdminNav() {
       >
         <Image
           src="/logo.png"
-          alt="Auréx Atelier"
+          alt="Auréx"
           height={32}
           width={120}
           style={{ objectFit: "contain", objectPosition: "left" }}

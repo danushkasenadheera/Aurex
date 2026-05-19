@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import AdminLoginForm from "@/components/admin/AdminLoginForm";
 
-export const metadata: Metadata = { title: "Admin Login | Auréx Atelier" };
+export const metadata: Metadata = { title: "Admin Login | Auréx" };
 
 export default function AdminLoginPage() {
   return (

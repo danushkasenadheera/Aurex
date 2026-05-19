@@ -8,7 +8,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Premium Essentials — Made in Sri Lanka",
   description:
-    "Auréx Atelier crafts luxury everyday essentials with precision-grade fabrics. Discover our plain and premium collections.",
+    "Auréx crafts luxury everyday essentials with precision-grade fabrics. Discover our plain and premium collections.",
 };
 
 async function getFeaturedProducts() {

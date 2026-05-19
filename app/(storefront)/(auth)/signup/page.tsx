@@ -45,7 +45,7 @@ export default function SignupPage() {
             className="text-sm mb-8"
             style={{ color: "var(--color-fg-muted)" }}
           >
-            Join Auréx Atelier for seamless ordering
+            Join Auréx for seamless ordering
           </p>
 
           <SignupForm />

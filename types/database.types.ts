@@ -162,6 +162,18 @@ export interface Database {
           zone_other_days: string;
           express_fee: number;
           free_shipping_threshold: number;
+          social_facebook_url: string;
+          social_instagram_url: string;
+          social_tiktok_url: string;
+          whatsapp_number: string;
+          whatsapp_prefill_message: string;
+          business_hours_open_day: string;
+          business_hours_close_day: string;
+          business_hours_open_time: string;
+          business_hours_close_time: string;
+          footer_holiday_note: string;
+          footer_brand_tagline: string;
+          footer_copyright_suffix: string;
           updated_at: string;
         };
         Insert: Partial<Database["public"]["Tables"]["settings"]["Row"]>;

@@ -3,8 +3,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Auréx Atelier — Premium Essentials",
-    template: "%s | Auréx Atelier",
+    default: "Auréx — Premium Essentials",
+    template: "%s | Auréx",
   },
   description:
     "Luxury everyday essentials. Made in Sri Lanka with precision-crafted fabrics.",

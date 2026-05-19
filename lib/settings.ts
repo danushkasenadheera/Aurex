@@ -27,9 +27,25 @@ export interface ShippingSettings {
   freeThreshold: number;
 }
 
+export interface FooterSettings {
+  socialFacebook: string;
+  socialInstagram: string;
+  socialTiktok: string;
+  whatsappNumber: string;
+  whatsappPrefill: string;
+  businessOpenDay: string;
+  businessCloseDay: string;
+  businessOpenTime: string;
+  businessCloseTime: string;
+  holidayNote: string;
+  brandTagline: string;
+  copyrightSuffix: string;
+}
+
 export interface AppSettings {
   bank: BankSettings;
   shipping: ShippingSettings;
+  footer: FooterSettings;
 }
 
 export async function getSettings(): Promise<AppSettings> {
@@ -56,6 +72,20 @@ export async function getSettings(): Promise<AppSettings> {
         },
       },
       freeThreshold: data.free_shipping_threshold,
+    },
+    footer: {
+      socialFacebook: data.social_facebook_url,
+      socialInstagram: data.social_instagram_url,
+      socialTiktok: data.social_tiktok_url,
+      whatsappNumber: data.whatsapp_number,
+      whatsappPrefill: data.whatsapp_prefill_message,
+      businessOpenDay: data.business_hours_open_day,
+      businessCloseDay: data.business_hours_close_day,
+      businessOpenTime: data.business_hours_open_time,
+      businessCloseTime: data.business_hours_close_time,
+      holidayNote: data.footer_holiday_note,
+      brandTagline: data.footer_brand_tagline,
+      copyrightSuffix: data.footer_copyright_suffix,
     },
   };
 }
@@ -84,6 +114,20 @@ export function getDefaults(): AppSettings {
         },
       },
       freeThreshold: FREE_SHIPPING_THRESHOLD,
+    },
+    footer: {
+      socialFacebook: "",
+      socialInstagram: "",
+      socialTiktok: "",
+      whatsappNumber: "",
+      whatsappPrefill: "Hi Aurex! I need some help.",
+      businessOpenDay: "Mon",
+      businessCloseDay: "Fri",
+      businessOpenTime: "09:00",
+      businessCloseTime: "18:00",
+      holidayNote: "Responses may be delayed on public holidays in Sri Lanka.",
+      brandTagline: "Dressed for Every Chapter",
+      copyrightSuffix: "Auréx. All rights reserved.",
     },
   };
 }

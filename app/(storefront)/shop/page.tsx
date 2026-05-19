@@ -6,7 +6,7 @@ import type { ProductType } from "@/types/database.types";
 
 export const metadata: Metadata = {
   title: "Shop — All Products",
-  description: "Browse Auréx Atelier's full collection of premium essentials.",
+  description: "Browse Auréx's full collection of premium essentials.",
 };
 
 interface Props {
@@ -83,7 +83,7 @@ export default async function ShopPage({ searchParams }: Props) {
             className="text-xs tracking-[0.2em] uppercase mb-3"
             style={{ color: "var(--color-gold-200)", fontFamily: "var(--font-body)" }}
           >
-            Auréx Atelier
+            Auréx
           </p>
           <h1
             className="text-4xl sm:text-5xl"

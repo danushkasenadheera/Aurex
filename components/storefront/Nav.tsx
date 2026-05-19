@@ -50,7 +50,7 @@ export default function Nav() {
             <Link href="/home" className="flex items-center">
               <Image
                 src={theme === "light" ? "/logo-light.png" : "/logo.png"}
-                alt="Auréx Atelier"
+                alt="Auréx"
                 height={36}
                 width={140}
                 style={{ objectFit: "contain", objectPosition: "left" }}

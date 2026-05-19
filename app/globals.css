@@ -175,6 +175,13 @@ html {
 .tiptap strong { font-weight: 600; color: var(--color-fg); }
 .tiptap em { font-style: italic; }
 
+/* ── Footer links ────────────────────────────────────────────────────────── */
+.footer-link:hover { color: var(--color-gold-400) !important; }
+.footer-link:focus-visible { outline: 2px solid var(--color-gold-400); outline-offset: 2px; border-radius: 2px; }
+
+.footer-social-icon:hover { border-color: var(--color-gold-400) !important; color: var(--color-gold-400) !important; }
+.footer-social-icon:focus-visible { outline: 2px solid var(--color-gold-400); outline-offset: 2px; }
+
 /* ── Storefront product description (rendered HTML) ──────────────────────── */
 .product-description p { margin-bottom: 0.65em; }
 .product-description p:last-child { margin-bottom: 0; }

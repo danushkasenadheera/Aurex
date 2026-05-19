@@ -35,7 +35,7 @@ export const CART_EVENT = "aurex_cart_changed";
 
 export const BANK_DETAILS = {
   bank: "Commercial Bank of Ceylon",
-  accountName: "Auréx Atelier (Pvt) Ltd",
+  accountName: "Auréx (Pvt) Ltd",
   accountNumber: "",   // fill in: e.g. "8001234567"
   branch: "",          // fill in: e.g. "Colombo 03"
 } as const;

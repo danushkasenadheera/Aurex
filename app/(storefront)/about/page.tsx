@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "About — Our Story",
   description:
-    "Auréx Atelier was founded to create luxury everyday essentials, precision-crafted in Sri Lanka.",
+    "Auréx was founded to create luxury everyday essentials, precision-crafted in Sri Lanka.",
 };
 
 export default function AboutPage() {
@@ -43,7 +43,7 @@ export default function AboutPage() {
             className="text-base sm:text-lg leading-relaxed max-w-2xl mx-auto"
             style={{ color: "var(--color-fg-muted)" }}
           >
-            Auréx Atelier was founded on a simple belief: the clothes you wear every
+            Auréx was founded on a simple belief: the clothes you wear every
             day deserve the same consideration as the ones you wear to occasions.
           </p>
         </div>
@@ -221,7 +221,7 @@ export default function AboutPage() {
                 ["Cotton Type", "Supima", "USA Origin"],
                 ["Shrinkage", "< 3%", "After 40 washes"],
                 ["Colorfastness", "Grade 4–5", "ISO 105-C06"],
-                ["Origin", "Sri Lanka", "Auréx Atelier"],
+                ["Origin", "Sri Lanka", "Auréx"],
               ].map(([label, value, sub]) => (
                 <div
                   key={label}
