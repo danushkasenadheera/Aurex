@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import ProductCard from "@/components/storefront/ProductCard";
 import ShopFilters from "@/components/storefront/ShopFilters";
 import type { Metadata } from "next";
-import type { ProductType } from "@/types/database.types";
+import type { ProductType, ProductWithVariants } from "@/types/database.types";
 
 export const metadata: Metadata = {
   title: "Shop — All Products",
@@ -54,7 +54,7 @@ async function getProducts(type?: string, tag?: string, sort?: string) {
   }
 
   const { data } = await query;
-  return data ?? [];
+  return (data ?? []) as unknown as ProductWithVariants[];
 }
 
 export default async function ShopPage({ searchParams }: Props) {
@@ -142,7 +142,6 @@ export default async function ShopPage({ searchParams }: Props) {
           </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
-            {/* @ts-expect-error — Supabase nested type */}
             {products.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}

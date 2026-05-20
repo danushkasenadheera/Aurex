@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getHomeContent } from "@/lib/home-content";
 import ProductCard from "@/components/storefront/ProductCard";
 import type { Metadata } from "next";
+import type { ProductWithVariants } from "@/types/database.types";
 
 export const metadata: Metadata = {
   title: "Premium Menswear — Made in Sri Lanka",
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
     "Auréx crafts luxury everyday essentials with precision-grade fabrics. Discover our plain and premium collections.",
 };
 
-async function getFeaturedProducts() {
+async function getFeaturedProducts(): Promise<ProductWithVariants[]> {
   const supabase = await createClient();
   const { data } = await supabase
     .from("products")
@@ -21,10 +22,10 @@ async function getFeaturedProducts() {
     .eq("listed", true)
     .contains("tags", ["Featured"])
     .limit(4);
-  return data ?? [];
+  return (data ?? []) as unknown as ProductWithVariants[];
 }
 
-async function getNewArrivals() {
+async function getNewArrivals(): Promise<ProductWithVariants[]> {
   const supabase = await createClient();
   const { data } = await supabase
     .from("products")
@@ -34,7 +35,7 @@ async function getNewArrivals() {
     .eq("listed", true)
     .contains("tags", ["New Arrival"])
     .limit(8);
-  return data ?? [];
+  return (data ?? []) as unknown as ProductWithVariants[];
 }
 
 type FeaturedProduct = { id: string; name: string; price: number };
@@ -530,7 +531,6 @@ export default async function HomePage() {
             </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-              {/* @ts-expect-error — Supabase type mismatch with nested relations */}
               {featured.map((p) => (
                 <ProductCard key={p.id} product={p} />
               ))}
@@ -644,7 +644,6 @@ export default async function HomePage() {
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {/* @ts-expect-error — Supabase type mismatch with nested relations */}
               {newArrivals.map((p) => (
                 <ProductCard key={p.id} product={p} />
               ))}
