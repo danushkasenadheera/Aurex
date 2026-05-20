@@ -4,7 +4,7 @@ import { useState } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
-import type { ProductType } from "@/types/database.types";
+import type { ProductType, Collection } from "@/types/database.types";
 import ImageUpload from "@/components/admin/ImageUpload";
 
 const RichTextEditor = dynamic(() => import("@/components/admin/RichTextEditor"), { ssr: false });
@@ -32,10 +32,12 @@ interface InitialVariant {
 interface Props {
   mode: "new" | "edit";
   productTypes: ProductType[];
+  collections: Collection[];
   initialData?: {
     id: string;
     name: string;
     type_id: string | null;
+    collection_id: string | null;
     price: number;
     compare_at: number | null;
     fabric: string;
@@ -61,7 +63,7 @@ function slugify(name: string) {
   return "ax-" + name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
-export default function ProductForm({ mode, productTypes, initialData }: Props) {
+export default function ProductForm({ mode, productTypes, collections, initialData }: Props) {
   const router = useRouter();
   const isEdit = mode === "edit";
 
@@ -70,6 +72,7 @@ export default function ProductForm({ mode, productTypes, initialData }: Props) 
   const [slugManual, setSlugManual] = useState(isEdit);
   const [name, setName] = useState(initialData?.name ?? "");
   const [typeId, setTypeId] = useState(initialData?.type_id ?? "");
+  const [collectionId, setCollectionId] = useState(initialData?.collection_id ?? "");
   const [price, setPrice] = useState(String(initialData?.price ?? ""));
   const [compareAt, setCompareAt] = useState(String(initialData?.compare_at ?? ""));
   const [fabric, setFabric] = useState(initialData?.fabric ?? "");
@@ -161,6 +164,7 @@ export default function ProductForm({ mode, productTypes, initialData }: Props) 
       id: slug.trim(),
       name: name.trim(),
       type_id: typeId || null,
+      collection_id: collectionId || null,
       price: Number(price),
       compare_at: compareAt ? Number(compareAt) : null,
       fabric: fabric.trim(),
@@ -295,6 +299,24 @@ export default function ProductForm({ mode, productTypes, initialData }: Props) 
               {productTypes.map((t) => (
                 <option key={t.id} value={t.id} style={{ backgroundColor: "var(--color-forest)" }}>
                   {t.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Collection */}
+          <div>
+            <label className={labelCls} style={labelStyle}>Collection</label>
+            <select
+              value={collectionId}
+              onChange={(e) => setCollectionId(e.target.value)}
+              className={inputCls}
+              style={inputStyle}
+            >
+              <option value="">— No collection —</option>
+              {collections.map((c) => (
+                <option key={c.id} value={c.id} style={{ backgroundColor: "var(--color-forest)" }}>
+                  {c.name}
                 </option>
               ))}
             </select>

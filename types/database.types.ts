@@ -19,11 +19,24 @@ export interface Database {
         Insert: Omit<Database["public"]["Tables"]["product_types"]["Row"], "id" | "created_at">;
         Update: Partial<Database["public"]["Tables"]["product_types"]["Row"]>;
       };
+      collections: {
+        Row: {
+          id: string;
+          name: string;
+          slug: string;
+          description: string;
+          cover_image_url: string;
+          created_at: string;
+        };
+        Insert: Omit<Database["public"]["Tables"]["collections"]["Row"], "id" | "created_at">;
+        Update: Partial<Database["public"]["Tables"]["collections"]["Row"]>;
+      };
       products: {
         Row: {
           id: string;
           name: string;
           type_id: string | null;
+          collection_id: string | null;
           price: number;
           compare_at: number | null;
           fabric: string;
@@ -187,6 +200,7 @@ export interface Database {
 }
 
 export type ProductType = Database["public"]["Tables"]["product_types"]["Row"];
+export type Collection = Database["public"]["Tables"]["collections"]["Row"];
 export type Product = Database["public"]["Tables"]["products"]["Row"];
 export type ProductVariant = Database["public"]["Tables"]["product_variants"]["Row"];
 export type Inventory = Database["public"]["Tables"]["inventory"]["Row"];

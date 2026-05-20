@@ -61,6 +61,19 @@ const NAV_ITEMS = [
     ),
   },
   {
+    href: "/admin/collections",
+    label: "Collections",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <rect x="2" y="3" width="7" height="9" rx="1" />
+        <rect x="2" y="14" width="7" height="7" rx="1" />
+        <rect x="11" y="3" width="11" height="4" rx="1" />
+        <rect x="11" y="9" width="11" height="6" rx="1" />
+        <rect x="11" y="17" width="11" height="4" rx="1" />
+      </svg>
+    ),
+  },
+  {
     href: "/admin/product-types",
     label: "Product Types",
     icon: (

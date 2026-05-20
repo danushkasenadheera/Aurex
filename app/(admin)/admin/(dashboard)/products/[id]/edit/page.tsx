@@ -24,7 +24,7 @@ export default async function EditProductPage({ params }: Props) {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const sb = supabase as unknown as any;
-  const [productRes, typesRes] = await Promise.all([
+  const [productRes, typesRes, collectionsRes] = await Promise.all([
     sb
       .from("products")
       .select(`*, product_variants(id, color, hex, images, inventory(variant_id, size, qty))`)
@@ -34,6 +34,10 @@ export default async function EditProductPage({ params }: Props) {
       .from("product_types")
       .select("id, name, sort_order, created_at")
       .order("sort_order"),
+    sb
+      .from("collections")
+      .select("id, name, slug, description, cover_image_url, created_at")
+      .order("name"),
   ]);
 
   if (!productRes.data) notFound();
@@ -45,6 +49,7 @@ export default async function EditProductPage({ params }: Props) {
     id: raw.id,
     name: raw.name,
     type_id: raw.type_id ?? null,
+    collection_id: raw.collection_id ?? null,
     price: raw.price,
     compare_at: raw.compare_at ?? null,
     fabric: raw.fabric ?? "",
@@ -84,7 +89,7 @@ export default async function EditProductPage({ params }: Props) {
         </p>
       </div>
 
-      <ProductForm mode="edit" productTypes={typesRes.data ?? []} initialData={initialData} />
+      <ProductForm mode="edit" productTypes={typesRes.data ?? []} collections={collectionsRes.data ?? []} initialData={initialData} />
     </div>
   );
 }
